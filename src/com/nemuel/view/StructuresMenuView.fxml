@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@Style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.nemuel.controller.StructuresMenuController">
+   <children>
+      <Accordion id="Accordion-Custom" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <panes>
+          <TitledPane id="Accordion-Custom" fx:id="titledPaneStructures" text="Estructuras">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <content>
+                  <Accordion>
+                    <panes>
+                      <TitledPane fx:id="titledPaneSequential" text="Secuencial" />
+                      <TitledPane id="Accordion-Custom" text="Condicional" />
+                        <TitledPane text="Repetitiva" />
+                        <TitledPane text="Otros" />
+                    </panes>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Accordion>
+               </content>
+            </TitledPane>
+          <TitledPane animated="false" text="Otros">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </TitledPane>
+        </panes>
+      </Accordion>
+   </children>
+</AnchorPane>

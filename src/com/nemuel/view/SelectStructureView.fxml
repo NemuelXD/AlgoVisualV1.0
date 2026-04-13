@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nemuel.controller.SelectStructureController">
+   <children>
+      <AnchorPane fx:id="aPaneSequential" />
+      <AnchorPane fx:id="aPaneConditional" visible="false" />
+      <AnchorPane fx:id="aPaneRepetitive" visible="false" />
+      <AnchorPane fx:id="aPaneOthers" visible="false" />
+   </children>
+</StackPane>
