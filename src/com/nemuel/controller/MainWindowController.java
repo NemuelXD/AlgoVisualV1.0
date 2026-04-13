@@ -38,7 +38,13 @@ public class MainWindowController implements Initializable {
     @FXML
     private HBox hBoxAppearanceModule;
     @FXML
+    private HBox hBoxExecutionModule;
+    @FXML
+    private HBox hBoxToolsModule;
+    @FXML
     private AnchorPane aPaneStructuresMenu;
+    @FXML
+    private HBox hBoxHelpModule;
     @FXML
     private Pane paneLayoutArea;
 
@@ -54,6 +60,9 @@ public class MainWindowController implements Initializable {
         hBoxFileModule.setVisible(true);
         hBoxConfigurationModule.setVisible(false);
         hBoxAppearanceModule.setVisible(false);
+        hBoxExecutionModule.setVisible(false);
+        hBoxToolsModule.setVisible(false);
+        hBoxHelpModule.setVisible(false);
     }
 
     @FXML
@@ -61,13 +70,49 @@ public class MainWindowController implements Initializable {
         hBoxFileModule.setVisible(false);
         hBoxConfigurationModule.setVisible(true);
         hBoxAppearanceModule.setVisible(false);
+        hBoxExecutionModule.setVisible(false);
+        hBoxToolsModule.setVisible(false);
+        hBoxHelpModule.setVisible(false);
     }
 
     @FXML
-    private void showAppearanceModule(ActionEvent event) {
+    private void showAppearanceModule(Event event) {
         hBoxFileModule.setVisible(false);
         hBoxConfigurationModule.setVisible(false);
         hBoxAppearanceModule.setVisible(true);
+        hBoxExecutionModule.setVisible(false);
+        hBoxToolsModule.setVisible(false);
+        hBoxHelpModule.setVisible(false);
+    }
+
+    @FXML
+    void showExecutionModule(Event event) {
+        hBoxFileModule.setVisible(false);
+        hBoxConfigurationModule.setVisible(false);
+        hBoxAppearanceModule.setVisible(false);
+        hBoxExecutionModule.setVisible(true);
+        hBoxToolsModule.setVisible(false);
+        hBoxHelpModule.setVisible(false);
+    }
+
+    @FXML
+    private void showToolsModule(Event event) {
+        hBoxFileModule.setVisible(false);
+        hBoxConfigurationModule.setVisible(false);
+        hBoxAppearanceModule.setVisible(false);
+        hBoxExecutionModule.setVisible(false);
+        hBoxToolsModule.setVisible(true);
+        hBoxHelpModule.setVisible(false);
+    }
+
+    @FXML
+    private void showHelpModule(ActionEvent event) {
+        hBoxFileModule.setVisible(false);
+        hBoxConfigurationModule.setVisible(false);
+        hBoxAppearanceModule.setVisible(false);
+        hBoxExecutionModule.setVisible(false);
+        hBoxToolsModule.setVisible(false);
+        hBoxHelpModule.setVisible(true);
     }
 
     private void loadModules() {
@@ -102,4 +147,5 @@ public class MainWindowController implements Initializable {
         }
         this.paneLayoutArea.getChildren().add(canvas);
     }
+
 }

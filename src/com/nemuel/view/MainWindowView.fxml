@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -37,17 +40,17 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button id="menu-button-custom" mnemonicParsing="false" text="Ejecutar">
+                  <Button id="menu-button-custom" mnemonicParsing="false" onAction="#showExecutionModule" text="Ejecutar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button id="menu-button-custom" mnemonicParsing="false" text="Herramientas">
+                  <Button id="menu-button-custom" mnemonicParsing="false" onAction="#showToolsModule" text="Herramientas">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button id="menu-button-custom" mnemonicParsing="false" text="Ayuda">
+                  <Button id="menu-button-custom" mnemonicParsing="false" onAction="#showHelpModule" text="Ayuda">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -56,14 +59,14 @@
             </HBox>
             <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0">
                <children>
-                  <HBox id="HBoxToolBar1" fx:id="hBoxFileModule" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" StackPane.alignment="CENTER">
+                  <HBox id="HBoxToolBar" fx:id="hBoxFileModule" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" StackPane.alignment="CENTER">
                      <StackPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </StackPane.margin>
                      <children>
                         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label text="Gestionar">
+                              <Label text="Gestionar" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -137,7 +140,7 @@
                         <Separator orientation="VERTICAL" prefHeight="200.0" />
                      </children>
                   </HBox>
-                  <HBox id="HBoxToolBar2" fx:id="hBoxConfigurationModule" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@Style.css" visible="false" StackPane.alignment="CENTER">
+                  <HBox id="HBoxToolBar" fx:id="hBoxConfigurationModule" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@Style.css" visible="false" StackPane.alignment="CENTER">
                      <StackPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </StackPane.margin>
@@ -198,7 +201,10 @@
                         <Separator orientation="VERTICAL" prefHeight="200.0" />
                         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0">
                            <children>
-                              <Label text="Almacenamiento" />
+                              <Label text="Almacenamiento">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <ImageView id="image-hover" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -216,7 +222,10 @@
                         <Separator orientation="VERTICAL" prefHeight="200.0" />
                         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0">
                            <children>
-                              <Label text="Limpieza" />
+                              <Label text="Limpieza">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <ImageView id="image-hover" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -233,7 +242,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox id="HBoxToolBar3" fx:id="hBoxAppearanceModule" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@Style.css" visible="false">
+                  <HBox id="HBoxToolBar" fx:id="hBoxAppearanceModule" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@Style.css" visible="false" StackPane.alignment="CENTER">
                      <children>
                         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0">
                            <children>
@@ -275,7 +284,10 @@
                         <Separator orientation="VERTICAL" prefHeight="200.0" />
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Colores" />
+                              <Label text="Colores">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <ImageView id="image-hover" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -296,22 +308,364 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </StackPane.margin>
                   </HBox>
+                  <HBox id="HBoxToolBar" fx:id="hBoxExecutionModule" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@Style.css" visible="false" StackPane.alignment="CENTER">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Acciones" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <ImageView id="image-hover" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/ejecutar.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView id="image-hover" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/ejecutarPasoAPaso.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                     </children>
+                     <StackPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </StackPane.margin>
+                  </HBox>
+                  <HBox id="HBoxToolBar" fx:id="hBoxToolsModule" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" visible="false" StackPane.alignment="CENTER">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Plantilla de Trabajo">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <ImageView id="image-hover" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/cuadricula.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView id="image-hover" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/lineas.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView id="image-hover" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/punteada.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Prueba de Escritorio">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView id="image-hover" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/prueba.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                     </children>
+                     <StackPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </StackPane.margin>
+                  </HBox>
+                  <HBox id="HBoxToolBar" fx:id="hBoxHelpModule" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Informacion">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <ImageView id="image-hover" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/acercaDe.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView id="image-hover" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/documentacion.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Tutorial">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <ImageView id="image-hover" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/videoTutorial.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView id="image-hover" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/documentoTutorial.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Ejemplos">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                       <children>
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Secuenciales">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Repetitivos">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                       <children>
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Condicionales">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Metodos">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                     </children>
+                     <StackPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </StackPane.margin>
+                  </HBox>
                </children>
             </StackPane>
-            <SplitPane dividerPositions="0.2, 0.7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="514.0" prefWidth="1270.0" VBox.vgrow="ALWAYS">
+            <SplitPane dividerPositions="0.15, 0.7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="514.0" prefWidth="1270.0" VBox.vgrow="ALWAYS">
                <items>
                   <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
                     <items>
                       <AnchorPane fx:id="aPaneStructuresMenu" />
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                 <children>
+                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/controlAutomatico.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label text="Control:">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="65.0">
+                                       <graphic>
+                                          <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                             <image>
+                                                <Image url="@../resources/icons/siguiente%20(1).png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="65.0">
+                                       <graphic>
+                                          <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/icons/siguiente%20(1).png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label text="Vel. " />
+                                    <Slider>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Slider>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="30.0">
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/icons/stop%20(1).png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="30.0">
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/icons/play%20(1).png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="30.0">
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/icons/pausa%20(1).png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
                     </items>
                   </SplitPane>
                   <VBox id="APaneDiagrammerArea" spacing="5.0">
                      <children>
-                        <HBox id="whiteBackground" prefHeight="40.0">
+                        <HBox id="whiteBackground" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
-                              <Label text="Label" />
-                           </children></HBox>
+                              <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/diagrama.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Area de trabajo:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
+                              <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Diagramar">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXToggleButton graphicTextGap="0.0" text=" " unToggleColor="#009688" unToggleLineColor="#77c2bb">
+                                       <font>
+                                          <Font size="1.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXToggleButton>
+                                    <Label text="Codificar">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="150.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding></HBox>
                         <SplitPane dividerPositions="0.6" orientation="VERTICAL" VBox.vgrow="ALWAYS">
                           <items>
                             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
@@ -327,13 +681,39 @@
                         </SplitPane>
                      </children>
                   </VBox>
-                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0">
+                  <VBox id="APaneCodeArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                      <children>
-                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" />
+                        <HBox id="whiteBackground" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" spacing="2.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/codigo.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Codigo:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox prefWidth="100.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding></HBox>
                         <ScrollPane VBox.vgrow="ALWAYS">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
                           </content>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </ScrollPane>
                      </children>
                   </VBox>
