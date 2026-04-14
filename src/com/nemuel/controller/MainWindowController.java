@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -46,13 +47,12 @@ public class MainWindowController implements Initializable {
     @FXML
     private HBox hBoxHelpModule;
     @FXML
-    private Pane paneLayoutArea;
+    private AnchorPane aPaneDiagrammingArea;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Tooltip.install(imgViewNewFile, new Tooltip("Nuevo archivo"));
         this.loadModules();
-        this.drawGuideLines();
     }
 
     @FXML
@@ -117,13 +117,19 @@ public class MainWindowController implements Initializable {
 
     private void loadModules() {
         try {
-            Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/com/nemuel/view/StructuresMenuView.fxml"));
-            this.aPaneStructuresMenu.getChildren().setAll(node);
-            AnchorPane.setTopAnchor(node, 0.0);
-            AnchorPane.setBottomAnchor(node, 0.0);
-            AnchorPane.setLeftAnchor(node, 0.0);
-            AnchorPane.setRightAnchor(node, 0.0);
+            Node structureMenu = (AnchorPane) FXMLLoader.load(getClass().getResource("/com/nemuel/view/StructuresMenuView.fxml"));
+            this.aPaneStructuresMenu.getChildren().setAll(structureMenu);
+            AnchorPane.setTopAnchor(structureMenu, 0.0);
+            AnchorPane.setBottomAnchor(structureMenu, 0.0);
+            AnchorPane.setLeftAnchor(structureMenu, 0.0);
+            AnchorPane.setRightAnchor(structureMenu, 0.0);
 
+            Node diagramingArea = (TabPane) FXMLLoader.load(getClass().getResource("/com/nemuel/view/DiagrammingAreaView.fxml"));
+            this.aPaneDiagrammingArea.getChildren().setAll(diagramingArea);
+            AnchorPane.setTopAnchor(diagramingArea, 0.0);
+            AnchorPane.setBottomAnchor(diagramingArea, 0.0);
+            AnchorPane.setLeftAnchor(diagramingArea, 0.0);
+            AnchorPane.setRightAnchor(diagramingArea, 0.0);
         } catch (IOException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -133,19 +139,4 @@ public class MainWindowController implements Initializable {
             System.getLogger(MainWindowController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }
-
-    private void drawGuideLines() {
-        Canvas canvas = new Canvas(this.paneLayoutArea.getPrefWidth(), this.paneLayoutArea.getPrefHeight());
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setStroke(Color.LIGHTGRAY);
-        double cellSize = 15;
-        for (double y = 0; y < canvas.getHeight(); y += cellSize) {
-            gc.strokeLine(0, y, canvas.getWidth(), y);
-        }
-        for (double x = 0; x < canvas.getWidth(); x += cellSize) {
-            gc.strokeLine(x, 0, x, canvas.getHeight());
-        }
-        this.paneLayoutArea.getChildren().add(canvas);
-    }
-
 }
