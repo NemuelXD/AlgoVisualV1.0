@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Pane?>
+
+<ScrollPane hbarPolicy="ALWAYS" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nemuel.controller.DesktopTestingAreaController">
+   <content>
+      <Pane fx:id="paneDesktopTestingArea" prefHeight="4000.0" prefWidth="8000.0" />
+   </content>
+</ScrollPane>

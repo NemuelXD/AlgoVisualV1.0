@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
@@ -48,6 +49,8 @@ public class MainWindowController implements Initializable {
     private HBox hBoxHelpModule;
     @FXML
     private AnchorPane aPaneDiagrammingArea;
+    @FXML
+    private AnchorPane aPaneDesktopTestingArea;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -130,6 +133,14 @@ public class MainWindowController implements Initializable {
             AnchorPane.setBottomAnchor(diagramingArea, 0.0);
             AnchorPane.setLeftAnchor(diagramingArea, 0.0);
             AnchorPane.setRightAnchor(diagramingArea, 0.0);
+
+            Node desktopTestingArea = (ScrollPane) FXMLLoader.load(getClass().getResource("/com/nemuel/view/DesktopTestingAreaView.fxml"));
+            AnchorPane.setTopAnchor(desktopTestingArea, 0.0);
+            AnchorPane.setBottomAnchor(desktopTestingArea, 0.0);
+            AnchorPane.setLeftAnchor(desktopTestingArea, 0.0);
+            AnchorPane.setRightAnchor(desktopTestingArea, 0.0);
+            this.aPaneDesktopTestingArea.getChildren().setAll(desktopTestingArea);
+            
         } catch (IOException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

@@ -18,17 +18,20 @@ import javafx.scene.paint.Color;
  *
  * @author Nemuel
  */
-public class DiagrammingAreaController implements Initializable {
+public class DesktopTestingAreaController implements Initializable {
 
     @FXML
-    private Pane paneLayoutArea;
+    private Pane paneDesktopTestingArea;
 
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.drawGuideLines();
-    }
-
-    private void drawGuideLines() {
+    }  
+    
+    private void drawGuideLines(){
         double cellSize = 15;
         double blockSize = 150;
 
@@ -44,7 +47,7 @@ public class DiagrammingAreaController implements Initializable {
         }
 
         javafx.scene.image.Image pattern = block.snapshot(null, null);
-        this.paneLayoutArea.setBackground(
+        this.paneDesktopTestingArea.setBackground(
                 new javafx.scene.layout.Background(
                         new javafx.scene.layout.BackgroundImage(
                                 pattern,
@@ -54,7 +57,7 @@ public class DiagrammingAreaController implements Initializable {
                                 javafx.scene.layout.BackgroundSize.DEFAULT
                         )
                 )
-        );
+        );        
     }
-
+    
 }
