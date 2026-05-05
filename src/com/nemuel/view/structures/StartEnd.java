@@ -11,7 +11,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -27,8 +27,8 @@ public class StartEnd extends Structure {
     private double maxDisplace;
     private Timeline timeline;
 
-    public StartEnd(AnchorPane aPane) {
-        this.aPane = aPane;
+    public StartEnd(Pane paneContainer) {
+        super(paneContainer);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class StartEnd extends Structure {
 
         this.startEnd.getChildren().add(this.instruction);
 
-        this.aPane.getChildren().addAll(this.startEnd);
+        this.paneContainer.getChildren().addAll(this.startEnd);
 
         this.rectangle.widthProperty().bind(this.startEnd.widthProperty());
         this.rectangle.heightProperty().bind(this.startEnd.heightProperty());
@@ -127,7 +127,7 @@ public class StartEnd extends Structure {
                     }
                 });
 
-                this.aPane.setOnMousePressed(ev -> {
+                this.paneContainer.setOnMousePressed(ev -> {
                     if (editing) {
                         if (!ta.equals(ev.getTarget()) && !ta.isHover()) {
                             finishEdit(ta);
@@ -234,5 +234,9 @@ public class StartEnd extends Structure {
         if (!this.startEnd.getChildren().contains(this.instruction)) {
             this.startEnd.getChildren().add(this.instruction);
         }
+    }
+
+    public StackPane getStartEnd() {
+        return this.startEnd;
     }
 }

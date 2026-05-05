@@ -11,8 +11,8 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -29,8 +29,8 @@ public class Conditional extends Structure {
     private double maxDisplace;
     private Timeline timeLine;
 
-    public Conditional(AnchorPane aPane) {
-        this.aPane = aPane;
+    public Conditional(Pane paneContainer) {
+        super(paneContainer);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Conditional extends Structure {
 
         this.condition.getChildren().add(this.instruction);
 
-        this.aPane.getChildren().add(this.condition);
+        this.paneContainer.getChildren().add(this.condition);
 
         this.writeInstruction();
         this.resize();
@@ -117,7 +117,7 @@ public class Conditional extends Structure {
                     }
                 });
 
-                this.aPane.setOnMousePressed(ev -> {
+                this.paneContainer.setOnMousePressed(ev -> {
                     if (editing) {
                         if (!ta.equals(ev.getTarget()) && !ta.isHover()) {
                             finishEdit(ta);

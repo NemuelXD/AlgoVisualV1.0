@@ -1,5 +1,6 @@
 package com.nemuel.controller;
 
+import com.nemuel.view.structures.StartEnd;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,8 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
@@ -18,8 +17,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 /**
  * FXML Controller class
@@ -120,27 +117,40 @@ public class MainWindowController implements Initializable {
 
     private void loadModules() {
         try {
-            Node structureMenu = (AnchorPane) FXMLLoader.load(getClass().getResource("/com/nemuel/view/StructuresMenuView.fxml"));
+            FXMLLoader loadStructureMenu = new FXMLLoader(getClass().getResource("/com/nemuel/view/StructuresMenuView.fxml"));
+            AnchorPane structureMenu = loadStructureMenu.load();
+            StructuresMenuController structureMenuController = loadStructureMenu.getController();
             this.aPaneStructuresMenu.getChildren().setAll(structureMenu);
             AnchorPane.setTopAnchor(structureMenu, 0.0);
             AnchorPane.setBottomAnchor(structureMenu, 0.0);
             AnchorPane.setLeftAnchor(structureMenu, 0.0);
             AnchorPane.setRightAnchor(structureMenu, 0.0);
 
-            Node diagramingArea = (TabPane) FXMLLoader.load(getClass().getResource("/com/nemuel/view/DiagrammingAreaView.fxml"));
-            this.aPaneDiagrammingArea.getChildren().setAll(diagramingArea);
-            AnchorPane.setTopAnchor(diagramingArea, 0.0);
-            AnchorPane.setBottomAnchor(diagramingArea, 0.0);
-            AnchorPane.setLeftAnchor(diagramingArea, 0.0);
-            AnchorPane.setRightAnchor(diagramingArea, 0.0);
+            FXMLLoader loadDiagrammingArea = new FXMLLoader(getClass().getResource("/com/nemuel/view/DiagrammingAreaView.fxml"));
+            TabPane diagrammingArea = loadDiagrammingArea.load();
+            DiagrammingAreaController diagrammingAreaController = loadDiagrammingArea.getController();
+            this.aPaneDiagrammingArea.getChildren().setAll(diagrammingArea);
+            AnchorPane.setTopAnchor(diagrammingArea, 0.0);
+            AnchorPane.setBottomAnchor(diagrammingArea, 0.0);
+            AnchorPane.setLeftAnchor(diagrammingArea, 0.0);
+            AnchorPane.setRightAnchor(diagrammingArea, 0.0);
 
-            Node desktopTestingArea = (ScrollPane) FXMLLoader.load(getClass().getResource("/com/nemuel/view/DesktopTestingAreaView.fxml"));
+            structureMenuController.getSelectStructureController().getStart().getStartEnd().setOnMousePressed(e -> {
+                StartEnd newStart = new StartEnd(structureMenuController.getSelectStructureController().getApaneSequential());
+                newStart.buildStructure(5, 5, 80, 25, false);
+                newStart.getStartEnd().requestFocus();
+                diagrammingAreaController.addStructure(newStart.getStartEnd());
+            });
+
+            FXMLLoader loadDesktopTestingArea = new FXMLLoader(getClass().getResource("/com/nemuel/view/DesktopTestingAreaView.fxml"));
+            ScrollPane desktopTestingArea = loadDesktopTestingArea.load();
+            DesktopTestingAreaController desktopTestingAreaController = loadDesktopTestingArea.getController();
             AnchorPane.setTopAnchor(desktopTestingArea, 0.0);
             AnchorPane.setBottomAnchor(desktopTestingArea, 0.0);
             AnchorPane.setLeftAnchor(desktopTestingArea, 0.0);
             AnchorPane.setRightAnchor(desktopTestingArea, 0.0);
             this.aPaneDesktopTestingArea.getChildren().setAll(desktopTestingArea);
-            
+
         } catch (IOException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

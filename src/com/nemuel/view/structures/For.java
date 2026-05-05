@@ -1,6 +1,5 @@
 package com.nemuel.view.structures;
 
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
@@ -13,8 +12,8 @@ public class For extends Structure {
     private Path path;
     private Path pathLine;
 
-    public For(AnchorPane aPane) {
-        this.aPane = aPane;
+    public For(Pane paneContainer) {
+        super(paneContainer);
     }
 
     @Override
@@ -56,7 +55,7 @@ public class For extends Structure {
 
         this.f0r.getChildren().add(this.pathLine);
 
-        this.aPane.getChildren().add(this.f0r);
+        this.paneContainer.getChildren().add(this.f0r);
     }
 
     @Override

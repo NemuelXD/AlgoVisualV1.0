@@ -13,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -29,8 +30,8 @@ public class DataEntry extends Structure {
     private double maxDisplace;
     private Timeline timeline;
 
-    public DataEntry(AnchorPane aPane) {
-        this.aPane = aPane;
+    public DataEntry(Pane paneContainer) {
+        super(paneContainer);
     }
 
     @Override
@@ -68,7 +69,7 @@ public class DataEntry extends Structure {
 
         this.dataEntry.getChildren().add(this.instruction);
 
-        this.aPane.getChildren().add(this.dataEntry);
+        this.paneContainer.getChildren().add(this.dataEntry);
 
         if (toAnimate) {
             this.writeInstruction();
@@ -122,7 +123,7 @@ public class DataEntry extends Structure {
                     }
                 });
 
-                this.aPane.setOnMousePressed(ev -> {
+                this.paneContainer.setOnMousePressed(ev -> {
                     if (editing) {
                         if (!ta.equals(ev.getTarget()) && !ta.isHover()) {
                             finishEdit(ta);

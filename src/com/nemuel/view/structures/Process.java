@@ -11,7 +11,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -27,8 +27,8 @@ public class Process extends Structure {
     private double maxDisplace;
     private Timeline timeLine;
 
-    public Process(AnchorPane aPane) {
-        this.aPane = aPane;
+    public Process(Pane paneContainer) {
+        super(paneContainer);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Process extends Structure {
 
         this.process.getChildren().add(this.instruction);
 
-        this.aPane.getChildren().add(this.process);
+        this.paneContainer.getChildren().add(this.process);
 
         if (toAnimate) {
             this.writeInstruction();
@@ -119,7 +119,7 @@ public class Process extends Structure {
                     }
                 });
 
-                this.aPane.setOnMousePressed(ev -> {
+                this.paneContainer.setOnMousePressed(ev -> {
                     if (editing) {
                         if (!ta.equals(ev.getTarget()) && !ta.isHover()) {
                             this.finishEdit(ta);

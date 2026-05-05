@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
@@ -23,9 +24,16 @@ public class DiagrammingAreaController implements Initializable {
     @FXML
     private Pane paneLayoutArea;
 
+    private DragController dragController;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.dragController = new DragController(paneLayoutArea);
         this.drawGuideLines();
+    }
+
+    public void addStructure(Node structure) {
+        this.dragController.dragStructure(structure);
     }
 
     private void drawGuideLines() {
@@ -56,5 +64,4 @@ public class DiagrammingAreaController implements Initializable {
                 )
         );
     }
-
 }

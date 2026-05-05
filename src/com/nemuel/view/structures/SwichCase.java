@@ -15,6 +15,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
@@ -37,12 +38,12 @@ public class SwichCase extends Structure {
 
     private boolean editing = false;
 
-    public SwichCase(AnchorPane aPane) {
-        this.aPane = aPane;
+    public SwichCase(Pane paneContainer) {
+        super(paneContainer);
     }
 
     @Override
-    public void buildStructure(double x, double y, double w, double h,boolean toAnimate) {
+    public void buildStructure(double x, double y, double w, double h, boolean toAnimate) {
         this.switchC = new StackPane();
         this.switchC.relocate(300, 200);
         //this.switchC.setStyle("-fx-background-color: red;");
@@ -135,7 +136,7 @@ public class SwichCase extends Structure {
 
         this.switchC.getChildren().add(hBox);
 
-        this.aPane.getChildren().add(this.switchC);
+        this.paneContainer.getChildren().add(this.switchC);
 
         this.writeInstruction();
         this.resize();
@@ -308,7 +309,7 @@ public class SwichCase extends Structure {
                     }
                 });
 
-                this.aPane.setOnMousePressed(ev -> {
+                this.paneContainer.setOnMousePressed(ev -> {
                     if (editing) {
                         if (!ta.equals(ev.getTarget()) && !ta.isHover()) {
                             this.finishEdit(ta, lbl, sp);

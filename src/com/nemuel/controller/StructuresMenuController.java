@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
@@ -29,6 +28,9 @@ public class StructuresMenuController implements Initializable {
 
     @FXML
     private TitledPane titledPaneSequential;
+    
+    private FXMLLoader loadSelectStructure;
+    public SelectStructureController selectStructureController;
 
     Image iconStructures = new Image(
             getClass().getResourceAsStream("/com/nemuel/resources/icons/estructuras.png"),
@@ -46,8 +48,10 @@ public class StructuresMenuController implements Initializable {
 
     private void loadStructures() {
         try {
-            Node node = (StackPane) FXMLLoader.load(getClass().getResource("/com/nemuel/view/SelectStructureView.fxml"));
-            this.titledPaneSequential.setContent(node);
+            this.loadSelectStructure = new FXMLLoader(getClass().getResource("/com/nemuel/view/SelectStructureView.fxml"));
+            StackPane selectStructure = this.loadSelectStructure.load();
+            this.selectStructureController = this.loadSelectStructure.getController();
+            this.titledPaneSequential.setContent(selectStructure);
         } catch (IOException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -57,5 +61,8 @@ public class StructuresMenuController implements Initializable {
             System.getLogger(MainWindowController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }
-
+    
+    public SelectStructureController getSelectStructureController(){
+        return this.selectStructureController;
+    }
 }

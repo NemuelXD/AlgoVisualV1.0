@@ -11,10 +11,15 @@ import com.nemuel.view.structures.Print;
 import com.nemuel.view.structures.StartEnd;
 import com.nemuel.view.structures.SwichCase;
 import com.nemuel.view.structures.Process;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -56,4 +61,20 @@ public class SelectStructureController implements Initializable {
         this.end.buildStructure(5, 145, 80, 25, false);
     }
 
+    public StartEnd getStart() {
+        return this.start;
+    }
+
+    public Node isSelected() {
+        StartEnd newStart = new StartEnd(aPaneConditional);
+        newStart.buildStructure(5, 5, 80, 25, false);
+        this.start.getStartEnd().setOnMousePressed(e -> {
+            newStart.getStartEnd().requestFocus();
+        });
+        return newStart.getStartEnd();
+    }
+
+    public AnchorPane getApaneSequential() {
+        return this.aPaneSequential;
+    }
 }

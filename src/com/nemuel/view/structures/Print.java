@@ -13,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ClosePath;
@@ -33,8 +34,8 @@ public class Print extends Structure {
     private double maxDisplace;
     private Timeline timeline;
 
-    public Print(AnchorPane aPane) {
-        this.aPane = aPane;
+    public Print(Pane paneContainer) {
+        super(paneContainer);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class Print extends Structure {
 
         this.print.getChildren().add(this.instruction);
 
-        this.aPane.getChildren().add(this.print);
+        this.paneContainer.getChildren().add(this.print);
 
         if (toAnimate) {
             this.writeInstruction();
@@ -125,7 +126,7 @@ public class Print extends Structure {
                     }
                 });
 
-                this.aPane.setOnMousePressed(ev -> {
+                this.paneContainer.setOnMousePressed(ev -> {
                     if (editing) {
                         if (!ta.equals(ev.getTarget()) && !ta.isHover()) {
                             this.finishEdit(ta);
