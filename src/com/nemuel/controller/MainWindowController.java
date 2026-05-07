@@ -135,12 +135,14 @@ public class MainWindowController implements Initializable {
             AnchorPane.setLeftAnchor(diagrammingArea, 0.0);
             AnchorPane.setRightAnchor(diagrammingArea, 0.0);
 
-            structureMenuController.getSelectStructureController().getStart().getStartEnd().setOnMousePressed(e -> {
-                StartEnd newStart = new StartEnd(structureMenuController.getSelectStructureController().getApaneSequential());
-                newStart.buildStructure(5, 5, 80, 25, false);
-                newStart.getStartEnd().requestFocus();
-                diagrammingAreaController.addStructure(newStart.getStartEnd());
-            });
+//            structureMenuController.getSelectStructureController().getStart().getStartEnd().setOnMouseEntered(e -> {
+//                StartEnd newStart = new StartEnd(structureMenuController.getSelectStructureController().getApaneSequential());
+//                newStart.buildStructure(5, 5, 80, 25, false);
+//                newStart.getStartEnd().requestFocus();
+//                diagrammingAreaController.addStructure(newStart.getStartEnd());
+//            });
+            
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getStart().getStartEnd());
 
             FXMLLoader loadDesktopTestingArea = new FXMLLoader(getClass().getResource("/com/nemuel/view/DesktopTestingAreaView.fxml"));
             ScrollPane desktopTestingArea = loadDesktopTestingArea.load();

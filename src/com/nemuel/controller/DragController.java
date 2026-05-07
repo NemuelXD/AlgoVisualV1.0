@@ -1,21 +1,26 @@
 package com.nemuel.controller;
 
-import com.nemuel.view.structures.StartEnd;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class DragController {
-
+    
     private double posMouseX;
     private double posMouseY;
 
     private double relocateX;
     private double relocateY;
 
+    private double offsetX;
+    private double offsetY;
+
     private Pane paneLayoutArea;
+    private ImageView ghost;
 
     private static final double RADIUS_CIRCLE = 20;
     private static final double MARGIN = 10;
@@ -25,47 +30,79 @@ public class DragController {
     }
 
     public void dragStructure(Node node) {
-        double initialDesplacementX = node.getTranslateX();
-        double initialDesplacementY = node.getTranslateY();
 
-        node.setOnMousePressed((mouseEvent) -> {
-            this.posMouseX = mouseEvent.getSceneX();
-            this.posMouseY = mouseEvent.getSceneY();
+        node.setOnMousePressed(mouseEvent -> {
 
-            this.relocateX = ((Node) (mouseEvent.getSource())).getTranslateX();
-            this.relocateY = ((Node) (mouseEvent.getSource())).getTranslateY();
+            // 📍 calcular offset (dónde hiciste click dentro del nodo)
+            offsetX = mouseEvent.getX();
+            offsetY = mouseEvent.getY();
 
-            node.setOpacity(0.5);
+            // 📸 snapshot transparente
+            SnapshotParameters params = new SnapshotParameters();
+            params.setFill(Color.TRANSPARENT);
+
+            WritableImage snapshot = node.snapshot(params, null);
+
+            ghost = new ImageView(snapshot);
+            ghost.setOpacity(0.7);
+            ghost.setMouseTransparent(true);
+
+            Pane root = (Pane) paneLayoutArea.getScene().getRoot();
+            root.getChildren().add(ghost);
+
+            // 🔥 AQUÍ está la clave → aplicar offset desde el inicio
+            ghost.setLayoutX(mouseEvent.getSceneX() - offsetX);
+            ghost.setLayoutY(mouseEvent.getSceneY() - offsetY);
         });
 
-        node.setOnMouseDragged((mouseEvent) -> {
-            double dragX = mouseEvent.getSceneX() - this.posMouseX;
-            double dragY = mouseEvent.getSceneY() - this.posMouseY;
-
-            double newRelocateX = this.relocateX + dragX;
-            double newRelocateY = this.relocateY + dragY;
-
-            node.setTranslateX(newRelocateX);
-            node.setTranslateY(newRelocateY);
+        node.setOnMouseDragged(mouseEvent -> {
+            if (ghost != null) {
+                ghost.setLayoutX(mouseEvent.getSceneX() - offsetX);
+                ghost.setLayoutY(mouseEvent.getSceneY() - offsetY);
+            }
         });
 
-        node.setOnMouseReleased((mouseEvent) -> {
-            node.setTranslateX(initialDesplacementX);
-            node.setTranslateY(initialDesplacementY);
-            node.setOpacity(1.0);
+        node.setOnMouseReleased(mouseEvent -> {
 
-            double x = this.paneLayoutArea.sceneToLocal(mouseEvent.getSceneX(), mouseEvent.getSceneY()).getX();
-            double y = this.paneLayoutArea.sceneToLocal(mouseEvent.getSceneX(), mouseEvent.getSceneY()).getY();
+            Pane root = (Pane) paneLayoutArea.getScene().getRoot();
 
-            x = Math.max(RADIUS_CIRCLE + MARGIN, Math.min(x, this.paneLayoutArea.getWidth() - RADIUS_CIRCLE - MARGIN));
-            y = Math.max(RADIUS_CIRCLE + MARGIN, Math.min(y, this.paneLayoutArea.getHeight() - RADIUS_CIRCLE - MARGIN));
+            if (ghost != null) {
+                root.getChildren().remove(ghost);
+                ghost = null;
+            }
 
-            this.drawCircle(x, y);
+            // 🔴 1. VERIFICAR EN COORDENADAS DE ESCENA (ANTES DE CONVERTIR)
+            double sceneX = mouseEvent.getSceneX();
+            double sceneY = mouseEvent.getSceneY();
+
+            boolean insideScene
+                    = sceneX >= paneLayoutArea.localToScene(0, 0).getX()
+                    && sceneX <= paneLayoutArea.localToScene(paneLayoutArea.getWidth(), 0).getX()
+                    && sceneY >= paneLayoutArea.localToScene(0, 0).getY()
+                    && sceneY <= paneLayoutArea.localToScene(0, paneLayoutArea.getHeight()).getY();
+
+            if (!insideScene) {
+                return; // ❌ fuera del pane → no hacer nada
+            }
+
+            // 🔵 2. AHORA SÍ convertir a local
+            double x = paneLayoutArea.sceneToLocal(sceneX, sceneY).getX();
+            double y = paneLayoutArea.sceneToLocal(sceneX, sceneY).getY();
+
+            // 🔒 3. clamp dentro del área
+            x = Math.max(RADIUS_CIRCLE + MARGIN,
+                    Math.min(x, paneLayoutArea.getWidth() - RADIUS_CIRCLE - MARGIN));
+
+            y = Math.max(RADIUS_CIRCLE + MARGIN,
+                    Math.min(y, paneLayoutArea.getHeight() - RADIUS_CIRCLE - MARGIN));
+
+            // 🎯 acción final
+            drawCircle(x, y);
         });
     }
 
     private void drawCircle(double x, double y) {
         Circle circle = new Circle(x, y, 20, Color.RED);
-        this.paneLayoutArea.getChildren().add(circle);        
+        this.paneLayoutArea.getChildren().add(circle);
     }
 }

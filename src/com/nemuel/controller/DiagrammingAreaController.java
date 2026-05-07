@@ -24,16 +24,16 @@ public class DiagrammingAreaController implements Initializable {
     @FXML
     private Pane paneLayoutArea;
 
-    private DragController dragController;
+    private GhostDragController ghostDragController;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.dragController = new DragController(paneLayoutArea);
+        this.ghostDragController = new GhostDragController(paneLayoutArea);
         this.drawGuideLines();
     }
 
     public void addStructure(Node structure) {
-        this.dragController.dragStructure(structure);
+        this.ghostDragController.dragStructure(structure);
     }
 
     private void drawGuideLines() {

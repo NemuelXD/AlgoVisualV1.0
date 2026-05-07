@@ -65,15 +65,6 @@ public class SelectStructureController implements Initializable {
         return this.start;
     }
 
-    public Node isSelected() {
-        StartEnd newStart = new StartEnd(aPaneConditional);
-        newStart.buildStructure(5, 5, 80, 25, false);
-        this.start.getStartEnd().setOnMousePressed(e -> {
-            newStart.getStartEnd().requestFocus();
-        });
-        return newStart.getStartEnd();
-    }
-
     public AnchorPane getApaneSequential() {
         return this.aPaneSequential;
     }
