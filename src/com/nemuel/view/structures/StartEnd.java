@@ -72,7 +72,7 @@ public class StartEnd extends Structure {
 
         if (toAnimate) {
             this.resize();
-            //this.writeInstruction();
+            this.writeInstruction();
             this.animateBorder(toAnimate);
             this.drag();
         }

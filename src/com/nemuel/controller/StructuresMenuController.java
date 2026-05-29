@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.nemuel.controller;
 
 import java.io.IOException;
@@ -29,7 +25,11 @@ public class StructuresMenuController implements Initializable {
     @FXML
     private TitledPane titledPaneSequential;
     
+    @FXML
+    private TitledPane titledPaneConditional;
+    
     private FXMLLoader loadSelectStructure;
+    
     public SelectStructureController selectStructureController;
 
     Image iconStructures = new Image(
@@ -52,6 +52,7 @@ public class StructuresMenuController implements Initializable {
             StackPane selectStructure = this.loadSelectStructure.load();
             this.selectStructureController = this.loadSelectStructure.getController();
             this.titledPaneSequential.setContent(selectStructure);
+            //this.titledPaneConditional.setContent(selectStructure);
         } catch (IOException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

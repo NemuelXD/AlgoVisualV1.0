@@ -45,17 +45,19 @@ public class SwichCase extends Structure {
     @Override
     public void buildStructure(double x, double y, double w, double h, boolean toAnimate) {
         this.switchC = new StackPane();
-        this.switchC.relocate(300, 200);
+        this.switchC.relocate(x, y);
         //this.switchC.setStyle("-fx-background-color: red;");
         this.switchC.setMinSize(80, 25);
-        this.switchC.setPrefSize(140, 50);
+        this.switchC.setPrefSize(w, h);
         this.switchC.setMaxSize(250, 100);
 
         this.path = new Path();
         this.path.setFill(Color.rgb(25, 212, 184));
         this.path.setStroke(Color.BLACK);
         this.path.setStrokeWidth(2);
-        this.path.getStrokeDashArray().setAll(5d, 5d, 5d, 5d);
+        if (toAnimate) {
+            this.path.getStrokeDashArray().setAll(5d, 5d, 5d, 5d);
+        }
         this.switchC.widthProperty().addListener((obs, oldVal, newVal) -> updatPath(this.switchC.getPrefWidth(), this.switchC.getPrefHeight()));
         this.switchC.heightProperty().addListener((obs, oldVal, newVal) -> updatPath(this.switchC.getPrefWidth(), this.switchC.getPrefHeight()));
         StackPane.setAlignment(this.path, Pos.CENTER);
@@ -137,11 +139,12 @@ public class SwichCase extends Structure {
         this.switchC.getChildren().add(hBox);
 
         this.paneContainer.getChildren().add(this.switchC);
-
-        this.writeInstruction();
-        this.resize();
-        this.animateBorder(toAnimate);
-        this.drag();
+        if (toAnimate) {
+            this.writeInstruction();
+            this.resize();
+            this.animateBorder(toAnimate);
+            this.drag();
+        }
     }
 
     @Override

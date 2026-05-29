@@ -1,5 +1,6 @@
 package com.nemuel.controller;
 
+import com.nemuel.view.structures.StartEnd;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.ImageView;
@@ -88,5 +89,8 @@ public class GhostDragController {
     private void drawCircle(double x, double y) {
         Circle circle = new Circle(x, y, 20, Color.RED);
         this.paneLayoutArea.getChildren().add(circle);
+        
+        StartEnd start = new StartEnd(paneLayoutArea);
+        start.buildStructure(x-(80/2), y-(25/2), 80, 25, true);
     }
 }

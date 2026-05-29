@@ -36,18 +36,20 @@ public class Conditional extends Structure {
     @Override
     public void buildStructure(double x, double y, double w, double h, boolean toAnimate) {
         this.condition = new StackPane();
-        this.condition.relocate(100, 200);
+        this.condition.relocate(x, y);
         //this.condition.setStyle("-fx-background-color: red;");
         this.condition.setAlignment(Pos.CENTER);
         this.condition.setMinSize(80, 25);
-        this.condition.setPrefSize(140, 50);
+        this.condition.setPrefSize(w, h);
         this.condition.setMaxSize(250, 100);
 
         this.polygon = new Polygon();
         this.polygon.setFill(Color.rgb(20, 103, 184));
         this.polygon.setStroke(Color.BLACK);
         this.polygon.setStrokeWidth(2);
-        this.polygon.getStrokeDashArray().setAll(5d, 5d, 5d, 5d);
+        if (toAnimate) {
+            this.polygon.getStrokeDashArray().setAll(5d, 5d, 5d, 5d);
+        }
 
         this.condition.widthProperty().addListener((obs, oldW, newW) -> updatePolygon(newW.doubleValue(), this.condition.getHeight()));
         this.condition.heightProperty().addListener((obs, oldH, newH) -> updatePolygon(this.condition.getWidth(), newH.doubleValue()));
@@ -67,10 +69,12 @@ public class Conditional extends Structure {
 
         this.paneContainer.getChildren().add(this.condition);
 
-        this.writeInstruction();
-        this.resize();
-        this.animateBorder(toAnimate);
-        this.drag();
+        if (toAnimate) {
+            this.writeInstruction();
+            this.resize();
+            this.animateBorder(toAnimate);
+            this.drag();
+        }
     }
 
     @Override

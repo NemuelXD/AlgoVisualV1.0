@@ -58,7 +58,12 @@ public class SelectStructureController implements Initializable {
         this.print = new Print(aPaneSequential);
         this.print.buildStructure(5, 110, 80, 25, false);
         this.end = new StartEnd(aPaneSequential);
-        this.end.buildStructure(5, 145, 80, 25, false);
+        this.end.buildStructure(5, 145, 80, 25, false); 
+        
+//        this.conditional = new Conditional(aPaneConditional);
+//        this.conditional.buildStructure(5, 5, 80, 25, false);
+//        this.swichCase = new SwichCase(aPaneConditional);
+//        this.swichCase.buildStructure(5, 40, 100, 30, false);
     }
 
     public StartEnd getStart() {
