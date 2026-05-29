@@ -32,8 +32,8 @@ public class DiagrammingAreaController implements Initializable {
         this.drawGuideLines();
     }
 
-    public void addStructure(Node structure) {
-        this.ghostDragController.dragStructure(structure);
+    public void addStructure(Node structure, String typeStructure) {
+        this.ghostDragController.dragStructure(structure,typeStructure);
     }
 
     private void drawGuideLines() {

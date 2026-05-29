@@ -226,4 +226,7 @@ public class Process extends Structure {
         }
     }
 
+    public StackPane getProcess() {
+        return process;
+    }
 }

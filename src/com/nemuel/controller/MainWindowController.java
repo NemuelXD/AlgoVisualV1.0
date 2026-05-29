@@ -139,8 +139,11 @@ public class MainWindowController implements Initializable {
 //                newStart.getStartEnd().requestFocus();
 //                diagrammingAreaController.addStructure(newStart.getStartEnd());
 //            });
-            
-            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getStart().getStartEnd());
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getStart().getStartEnd(), "Start");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getDataEntry().getDataEntry(), "DataEntry");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getProcess().getProcess(), "Process");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getPrint().getPrint(), "Print");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getEnd().getStartEnd(), "End");
 
             FXMLLoader loadDesktopTestingArea = new FXMLLoader(getClass().getResource("/com/nemuel/view/DesktopTestingAreaView.fxml"));
             ScrollPane desktopTestingArea = loadDesktopTestingArea.load();

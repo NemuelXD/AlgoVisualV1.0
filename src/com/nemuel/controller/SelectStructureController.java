@@ -70,6 +70,22 @@ public class SelectStructureController implements Initializable {
         return this.start;
     }
 
+    public StartEnd getEnd() {
+        return this.end;
+    }
+
+    public DataEntry getDataEntry() {
+        return this.dataEntry;
+    }
+
+    public Process getProcess() {
+        return this.process;
+    }
+
+    public Print getPrint() {
+        return this.print;
+    }
+
     public AnchorPane getApaneSequential() {
         return this.aPaneSequential;
     }

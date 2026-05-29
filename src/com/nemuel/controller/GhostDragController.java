@@ -1,6 +1,9 @@
 package com.nemuel.controller;
 
+import com.nemuel.view.structures.DataEntry;
+import com.nemuel.view.structures.Print;
 import com.nemuel.view.structures.StartEnd;
+import com.nemuel.view.structures.Process;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.ImageView;
@@ -28,7 +31,7 @@ public class GhostDragController {
         this.paneLayoutArea = paneLayoutArea;
     }
 
-    public void dragStructure(Node node) {
+    public void dragStructure(Node node, String typeStructure) {
         node.setOnMousePressed(mouseEvent -> {
             this.offsetX = mouseEvent.getX();
             this.offsetY = mouseEvent.getY();
@@ -82,15 +85,38 @@ public class GhostDragController {
             x = Math.max(RADIUS_CIRCLE + MARGIN, Math.min(x, this.paneLayoutArea.getWidth() - RADIUS_CIRCLE - MARGIN));
             y = Math.max(RADIUS_CIRCLE + MARGIN, Math.min(y, this.paneLayoutArea.getHeight() - RADIUS_CIRCLE - MARGIN));
 
-            this.drawCircle(x, y);
+            this.drawCircle(x, y, typeStructure);
         });
     }
 
-    private void drawCircle(double x, double y) {
+    private void drawCircle(double x, double y, String typeStructure) {
         Circle circle = new Circle(x, y, 20, Color.RED);
         this.paneLayoutArea.getChildren().add(circle);
-        
-        StartEnd start = new StartEnd(paneLayoutArea);
-        start.buildStructure(x-(80/2), y-(25/2), 80, 25, true);
+
+        switch (typeStructure) {
+            case "Start" -> {
+                StartEnd start = new StartEnd(paneLayoutArea);
+                start.buildStructure(x - (80 / 2), y - (25 / 2), 80, 25, true);
+            }
+            case "DataEntry" -> {
+                DataEntry dataEntry = new DataEntry(paneLayoutArea);
+                dataEntry.buildStructure(x - (80 / 2), y - (25 / 2), 80, 25, true);
+            }
+            case "Process" -> {
+                Process process = new Process(paneLayoutArea);
+                process.buildStructure(x - (80 / 2), y - (25 / 2), 80, 25, true);
+            }
+            case "Print" -> {
+                Print print = new Print(paneLayoutArea);
+                print.buildStructure(x - (80 / 2), y - (25 / 2), 80, 25, true);
+            }
+            case "End" -> {
+                StartEnd end = new StartEnd(paneLayoutArea);
+                end.buildStructure(x - (80 / 2), y - (25 / 2), 80, 25, true);
+            }
+            default ->
+                System.out.println("Error estructura no encontrada :(");
+        }
+
     }
 }

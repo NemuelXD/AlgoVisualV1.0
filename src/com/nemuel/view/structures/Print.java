@@ -262,4 +262,9 @@ public class Print extends Structure {
             this.print.getChildren().add(this.instruction);
         }
     }
+
+    public StackPane getPrint() {
+        return print;
+    }
+
 }

@@ -246,4 +246,7 @@ public class DataEntry extends Structure {
         }
     }
 
+    public StackPane getDataEntry() {
+        return dataEntry;
+    }
 }
