@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nemuel.controller.StructuresMenuController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nemuel.controller.StructuresMenuController">
    <children>
       <Accordion id="Accordion-Custom" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <panes>
@@ -19,8 +19,8 @@
                     <panes>
                       <TitledPane fx:id="titledPaneSequential" text="Secuencial" />
                       <TitledPane id="Accordion-Custom" fx:id="titledPaneConditional" text="Condicional" />
-                        <TitledPane text="Repetitiva" />
-                        <TitledPane text="Otros" />
+                        <TitledPane fx:id="titledPaneRepetitive" text="Repetitiva" />
+                        <TitledPane fx:id="titledPaneOthers" text="Otros" />
                     </panes>
                      <padding>
                         <Insets left="15.0" />

@@ -16,16 +16,15 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.ClosePath;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public class For extends Structure {
+public class Method extends Structure {
 
-    private StackPane f0r;
+    private StackPane method;
     private Path path;
 
     private boolean editing = false;
@@ -33,32 +32,31 @@ public class For extends Structure {
     private double maxDisplace;
     private Timeline timeLine;
 
-    public For(Pane paneContainer) {
+    public Method(Pane paneContainer) {
         super(paneContainer);
     }
 
     @Override
     public void buildStructure(double x, double y, double w, double h, boolean toAnimate) {
-        this.f0r = new StackPane();
-        this.f0r.relocate(x, y);
-        //this.f0r.setStyle("-fx-background-color: red;");
-        this.f0r.setAlignment(Pos.CENTER);
-        this.f0r.setMinSize(80, 25);
-        this.f0r.setPrefSize(w, h);
-        this.f0r.setMaxSize(250, 100);
+        this.method = new StackPane();
+        this.method.relocate(x, y);
+        //this.method.setStyle("-fx-background-color: red;");
+        this.method.setAlignment(Pos.CENTER);
+        this.method.setMinSize(80, 25);
+        this.method.setPrefSize(w, h);
+        this.method.setMaxSize(250, 100);
 
         this.path = new Path();
-        this.path.setFill(Color.rgb(61, 196, 76));
+        this.path.setFill(Color.rgb(0, 128, 128));
         this.path.setStroke(Color.BLACK);
         this.path.setStrokeWidth(2);
         if (toAnimate) {
             this.path.getStrokeDashArray().setAll(5d, 5d, 5d, 5d);
         }
+        this.method.widthProperty().addListener((obs, oldVal, newVal) -> updatePath(this.method.getWidth(), this.method.getHeight()));
+        this.method.heightProperty().addListener((obs, oldVal, newVal) -> updatePath(this.method.getWidth(), this.method.getHeight()));
 
-        this.f0r.widthProperty().addListener((obs, oldVal, newVal) -> updatePath(this.f0r.getWidth(), this.f0r.getHeight()));
-        this.f0r.heightProperty().addListener((obs, oldVal, newVal) -> updatePath(this.f0r.getWidth(), this.f0r.getHeight()));
-
-        this.instruction = new Label("");
+        this.instruction = new Label("Metodo");
         this.instruction.setAlignment(Pos.CENTER);
         this.instruction.setWrapText(true);
         this.instruction.setStyle("""
@@ -67,10 +65,9 @@ public class For extends Structure {
                                   -fx-font-size: 12;
                                   """);
 
-        this.f0r.getChildren().add(this.path);
-        this.f0r.getChildren().add(this.instruction);
-        this.paneContainer.getChildren().add(this.f0r);
-
+        this.method.getChildren().add(this.path);
+        this.method.getChildren().add(this.instruction);
+        this.paneContainer.getChildren().add(this.method);
         if (toAnimate) {
             this.writeInstruction();
             this.resize();
@@ -81,14 +78,14 @@ public class For extends Structure {
 
     @Override
     public void writeInstruction() {
-        this.f0r.setOnMouseClicked(e -> {
+        this.method.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2 && !editing) {
                 editing = true;
 
                 TextArea ta = new TextArea(this.instruction.getText());
                 ta.setWrapText(true);
-                ta.setPrefWidth(this.f0r.getPrefWidth());
-                ta.setPrefHeight(this.f0r.getPrefHeight());
+                ta.setPrefWidth(this.method.getPrefWidth());
+                ta.setPrefHeight(this.method.getPrefHeight());
                 ta.setPadding(new Insets(1, 1, 1, 1));
                 ta.setOpacity(1);
                 ta.setBackground(Background.EMPTY);
@@ -102,7 +99,7 @@ public class For extends Structure {
                             -fx-highlight-fill: rgba(0,0,0,0.2);
                             -fx-highlight-text-fill: black;
                             -fx-font-family: 'Consolas';
-                            -fx-font-size: 11;              
+                            -fx-font-size: 11;                            
                             """);
                 ta.setFocusTraversable(true);
 
@@ -119,20 +116,20 @@ public class For extends Structure {
 
                 ta.focusedProperty().addListener((obs, oldV, newV) -> {
                     if (!newV) {
-                        finishEdit(ta);
+                        this.finishEdit(ta);
                     }
                 });
 
                 this.paneContainer.setOnMousePressed(ev -> {
                     if (editing) {
                         if (!ta.equals(ev.getTarget()) && !ta.isHover()) {
-                            finishEdit(ta);
+                            this.finishEdit(ta);
                         }
                     }
                 });
 
-                this.f0r.getChildren().remove(this.instruction);
-                this.f0r.getChildren().add(ta);
+                this.method.getChildren().remove(this.instruction);
+                this.method.getChildren().add(ta);
             }
         });
     }
@@ -148,8 +145,8 @@ public class For extends Structure {
         Rectangle handle = new Rectangle(TAM_HANDLE, TAM_HANDLE);
         handle.setFill(Color.TRANSPARENT);
         handle.setCursor(Cursor.SE_RESIZE);
-        handle.setTranslateX((this.f0r.getPrefWidth() - 60 - TAM_HANDLE) / 2);
-        handle.setTranslateY((this.f0r.getPrefHeight() - TAM_HANDLE) / 2);
+        handle.setTranslateX((this.method.getPrefWidth() - TAM_HANDLE) / 2);
+        handle.setTranslateY((this.method.getPrefHeight() - TAM_HANDLE) / 2);
 
         final Delta resizeDelta = new Delta();
 
@@ -163,15 +160,15 @@ public class For extends Structure {
             double dx = e.getSceneX() - resizeDelta.x;
             double dy = e.getSceneY() - resizeDelta.y;
 
-            double newW = this.f0r.getPrefWidth() + dx;
-            double newH = this.f0r.getPrefHeight() + dy;
+            double newW = this.method.getPrefWidth() + dx;
+            double newH = this.method.getPrefHeight() + dy;
 
             newW = Math.max(MIN_W, Math.min(MAX_W, newW));
             newH = Math.max(MIN_H, Math.min(MAX_H, newH));
 
-            this.f0r.setPrefSize(newW, newH);
+            this.method.setPrefSize(newW, newH);
 
-            handle.setTranslateX((newW - 60 - TAM_HANDLE) / 2);
+            handle.setTranslateX((newW - TAM_HANDLE) / 2);
             handle.setTranslateY((newH - TAM_HANDLE) / 2);
 
             resizeDelta.x = e.getSceneX();
@@ -180,7 +177,7 @@ public class For extends Structure {
             e.consume();
         });
 
-        this.f0r.getChildren().add(handle);
+        this.method.getChildren().add(handle);
     }
 
     @Override
@@ -192,7 +189,7 @@ public class For extends Structure {
                 .reduce(0d, (a, b) -> a + b);
 
         this.timeLine = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(this.path.strokeDashOffsetProperty(), maxDisplace, Interpolator.LINEAR)),
+                new KeyFrame(Duration.ZERO, new KeyValue(this.path.strokeDashOffsetProperty(), this.maxDisplace, Interpolator.LINEAR)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(this.path.strokeDashOffsetProperty(), 0, Interpolator.LINEAR))
         );
         this.timeLine.setCycleCount(Timeline.INDEFINITE);
@@ -204,35 +201,35 @@ public class For extends Structure {
     public void drag() {
         final Delta dragDelta = new Delta();
 
-        this.f0r.setOnMousePressed(e -> {
+        this.method.setOnMousePressed(e -> {
             if (e.isPrimaryButtonDown()) {
                 dragDelta.x = e.getX();
                 dragDelta.y = e.getY();
-                this.f0r.toFront();
-                this.f0r.setCursor(Cursor.HAND);
+                this.method.toFront();
+                this.method.setCursor(Cursor.HAND);
             }
         });
 
-        this.f0r.setOnMouseDragged(e -> {
-            this.f0r.relocate(
-                    this.f0r.getLayoutX() + e.getX() - dragDelta.x,
-                    this.f0r.getLayoutY() + e.getY() - dragDelta.y
+        this.method.setOnMouseDragged(e -> {
+            this.method.relocate(
+                    this.method.getLayoutX() + e.getX() - dragDelta.x,
+                    this.method.getLayoutY() + e.getY() - dragDelta.y
             );
         });
     }
 
     private void updatePath(double width, double height) {
         this.path.getElements().clear();
-        double x = 0;
-        double y = 0;
         this.path.getElements().addAll(
-                new MoveTo(0, height / 2),
-                new LineTo(35, 0),
-                new LineTo(width - 35, 0),
-                new LineTo(width, height / 2),
-                new LineTo(width - 35, height),
-                new LineTo(35, height),
-                new ClosePath()
+                new MoveTo(0, 0),
+                new LineTo(width, 0),
+                new LineTo(width, height),
+                new LineTo(0, height),
+                new LineTo(0, 0),
+                new MoveTo(10, 0),
+                new LineTo(10, height),
+                new MoveTo(width - 10, 0),
+                new LineTo(width - 10, height)
         );
     }
 
@@ -244,10 +241,10 @@ public class For extends Structure {
         editing = false;
 
         this.instruction.setText(ta.getText());
-        this.f0r.getChildren().remove(ta);
+        this.method.getChildren().remove(ta);
 
-        if (!this.f0r.getChildren().contains(this.instruction)) {
-            this.f0r.getChildren().add(this.instruction);
+        if (!this.method.getChildren().contains(this.instruction)) {
+            this.method.getChildren().add(this.instruction);
         }
     }
 
