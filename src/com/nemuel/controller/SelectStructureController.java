@@ -62,17 +62,17 @@ public class SelectStructureController implements Initializable {
         this.end.buildStructure(5, 145, 80, 25, false);
 
         this.conditional = new Conditional(aPaneConditional);
-        this.conditional.buildStructure(5, 5, 80, 25, false);
+        this.conditional.buildStructure(5, 5, 100, 25, false);
         this.swichCase = new SwichCase(aPaneConditional);
-        this.swichCase.buildStructure(5, 40, 100, 30, false);
+        this.swichCase.buildStructure(5, 40, 100, 35, false);
 
         this.f0r = new For(aPaneRepetitive);
-        this.f0r.buildStructure(5, 5, 80, 25, false);
+        this.f0r.buildStructure(5, 5, 100, 25, false);
         this.wh1le = new While(aPaneRepetitive);
-        this.wh1le.buildStructure(5, 40, 80, 25, false);
+        this.wh1le.buildStructure(5, 40, 100, 25, false);
 
         this.method = new Method(aPaneOthers);
-        this.method.buildStructure(5, 5, 80, 25, false);
+        this.method.buildStructure(5, 5, 100, 25, false);
         this.endOfProcedure = new EndOfProcedure(aPaneOthers);
         this.endOfProcedure.buildStructure(5, 40, 40, 40, false);
     }

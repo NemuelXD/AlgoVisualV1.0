@@ -35,6 +35,7 @@ public class EndOfProcedure extends Structure {
         this.endOfProcedure.setMinSize(25, 25);
         this.endOfProcedure.setPrefSize(w, h);
         this.endOfProcedure.setMaxSize(200, 200);
+        this.endOfProcedure.setCursor(Cursor.HAND);
 
         this.circle = new Circle();
         this.circle.setFill(Color.rgb(121, 113, 107));
@@ -146,5 +147,9 @@ public class EndOfProcedure extends Structure {
         this.circle.setCenterX(width / 2);
         this.circle.setCenterY(height / 2);
         this.circle.setRadius(width / 2);
+    }
+
+    public StackPane getEndOfProcedure() {
+        return this.endOfProcedure;
     }
 }

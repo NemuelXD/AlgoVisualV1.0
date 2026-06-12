@@ -46,6 +46,7 @@ public class While extends Structure {
         this.wh1le.setMinSize(80, 25);
         this.wh1le.setPrefSize(w, h);
         this.wh1le.setMaxSize(250, 100);
+        this.wh1le.setCursor(Cursor.HAND);
 
         this.path = new Path();
         this.path.setFill(Color.rgb(61, 196, 76));
@@ -246,6 +247,10 @@ public class While extends Structure {
         if (!this.wh1le.getChildren().contains(this.instruction)) {
             this.wh1le.getChildren().add(this.instruction);
         }
+    }
+
+    public StackPane getWh1le() {
+        return this.wh1le;
     }
 
 }

@@ -96,7 +96,20 @@ public class StructuresMenuController implements Initializable {
         }
     }
 
-    public SelectStructureController getSelectStructureController() {
+    public SelectStructureController getSelectStructureController1() {
         return this.selectStructureController1;
     }
+
+    public SelectStructureController getSelectStructureController2() {
+        return this.selectStructureController2;
+    }
+
+    public SelectStructureController getSelectStructureController3() {
+        return this.selectStructureController3;
+    }
+
+    public SelectStructureController getSelectStructureController4() {
+        return this.selectStructureController4;
+    }
+
 }

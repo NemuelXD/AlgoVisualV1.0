@@ -50,6 +50,7 @@ public class SwichCase extends Structure {
         this.switchC.setMinSize(80, 25);
         this.switchC.setPrefSize(w, h);
         this.switchC.setMaxSize(250, 100);
+        this.switchC.setCursor(Cursor.HAND);
 
         this.path = new Path();
         this.path.setFill(Color.rgb(25, 212, 184));
@@ -340,4 +341,9 @@ public class SwichCase extends Structure {
             sp.getChildren().add(lbl);
         }
     }
+
+    public StackPane getSwitchC() {
+        return this.switchC;
+    }
+
 }

@@ -115,15 +115,6 @@ public class MainWindowController implements Initializable {
 
     private void loadModules() {
         try {
-            FXMLLoader loadStructureMenu = new FXMLLoader(getClass().getResource("/com/nemuel/view/StructuresMenuView.fxml"));
-            AnchorPane structureMenu = loadStructureMenu.load();
-            StructuresMenuController structureMenuController = loadStructureMenu.getController();
-            this.aPaneStructuresMenu.getChildren().setAll(structureMenu);
-            AnchorPane.setTopAnchor(structureMenu, 0.0);
-            AnchorPane.setBottomAnchor(structureMenu, 0.0);
-            AnchorPane.setLeftAnchor(structureMenu, 0.0);
-            AnchorPane.setRightAnchor(structureMenu, 0.0);
-
             FXMLLoader loadDiagrammingArea = new FXMLLoader(getClass().getResource("/com/nemuel/view/DiagrammingAreaView.fxml"));
             TabPane diagrammingArea = loadDiagrammingArea.load();
             DiagrammingAreaController diagrammingAreaController = loadDiagrammingArea.getController();
@@ -133,17 +124,35 @@ public class MainWindowController implements Initializable {
             AnchorPane.setLeftAnchor(diagrammingArea, 0.0);
             AnchorPane.setRightAnchor(diagrammingArea, 0.0);
 
-//            structureMenuController.getSelectStructureController().getStart().getStartEnd().setOnMouseEntered(e -> {
-//                StartEnd newStart = new StartEnd(structureMenuController.getSelectStructureController().getApaneSequential());
+            FXMLLoader loadStructureMenu = new FXMLLoader(getClass().getResource("/com/nemuel/view/StructuresMenuView.fxml"));
+            AnchorPane structureMenu = loadStructureMenu.load();
+            StructuresMenuController structureMenuController = loadStructureMenu.getController();
+            this.aPaneStructuresMenu.getChildren().setAll(structureMenu);
+            AnchorPane.setTopAnchor(structureMenu, 0.0);
+            AnchorPane.setBottomAnchor(structureMenu, 0.0);
+            AnchorPane.setLeftAnchor(structureMenu, 0.0);
+            AnchorPane.setRightAnchor(structureMenu, 0.0);
+
+//            structureMenuController.getSelectStructureController1().getStart().getStartEnd().setOnMouseEntered(e -> {
+//                StartEnd newStart = new StartEnd(structureMenuController.getSelectStructureController1().getApaneSequential());
 //                newStart.buildStructure(5, 5, 80, 25, false);
 //                newStart.getStartEnd().requestFocus();
 //                diagrammingAreaController.addStructure(newStart.getStartEnd());
 //            });
-            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getStart().getStartEnd(), "Start");
-            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getDataEntry().getDataEntry(), "DataEntry");
-            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getProcess().getProcess(), "Process");
-            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getPrint().getPrint(), "Print");
-            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController().getEnd().getStartEnd(), "End");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController1().getStart().getStartEnd(), "Start");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController1().getDataEntry().getDataEntry(), "DataEntry");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController1().getProcess().getProcess(), "Process");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController1().getPrint().getPrint(), "Print");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController1().getEnd().getStartEnd(), "End");
+
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController2().getConditional().getCondition(), "Conditional");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController2().getSwichCase().getSwitchC(), "SwitchCase");
+
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController3().getF0r().getF0r(), "For");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController3().getWh1le().getWh1le(), "While");
+
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController4().getMethod().getMethod(), "Method");
+            diagrammingAreaController.addStructure(structureMenuController.getSelectStructureController4().getEndOfProcedure().getEndOfProcedure(), "EndOfProcedure");
 
             FXMLLoader loadDesktopTestingArea = new FXMLLoader(getClass().getResource("/com/nemuel/view/DesktopTestingAreaView.fxml"));
             ScrollPane desktopTestingArea = loadDesktopTestingArea.load();

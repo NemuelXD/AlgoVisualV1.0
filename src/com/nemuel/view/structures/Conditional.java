@@ -42,6 +42,7 @@ public class Conditional extends Structure {
         this.condition.setMinSize(80, 25);
         this.condition.setPrefSize(w, h);
         this.condition.setMaxSize(250, 100);
+        this.condition.setCursor(Cursor.HAND);
 
         this.polygon = new Polygon();
         this.polygon.setFill(Color.rgb(20, 103, 184));
@@ -242,6 +243,10 @@ public class Conditional extends Structure {
         if (!this.condition.getChildren().contains(this.instruction)) {
             this.condition.getChildren().add(this.instruction);
         }
+    }
+
+    public StackPane getCondition() {
+        return this.condition;
     }
 
 }

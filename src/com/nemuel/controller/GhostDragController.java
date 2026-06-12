@@ -1,9 +1,15 @@
 package com.nemuel.controller;
 
+import com.nemuel.view.structures.Conditional;
 import com.nemuel.view.structures.DataEntry;
+import com.nemuel.view.structures.EndOfProcedure;
+import com.nemuel.view.structures.For;
+import com.nemuel.view.structures.Method;
 import com.nemuel.view.structures.Print;
 import com.nemuel.view.structures.StartEnd;
 import com.nemuel.view.structures.Process;
+import com.nemuel.view.structures.SwichCase;
+import com.nemuel.view.structures.While;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.ImageView;
@@ -114,6 +120,30 @@ public class GhostDragController {
                 StartEnd end = new StartEnd(paneLayoutArea);
                 end.buildStructure(x - (80 / 2), y - (25 / 2), 80, 25, true);
             }
+            case "Conditional" -> {
+                Conditional conditional = new Conditional(paneLayoutArea);
+                conditional.buildStructure(x - (80 / 2), y - (25 / 2), 100, 25, true);
+            }
+            case "SwitchCase" -> {
+                SwichCase switchC = new SwichCase(paneLayoutArea);
+                switchC.buildStructure(x - (80 / 2), y - (25 / 2), 100, 35, true);
+            }
+            case "For" -> {
+                For f0r = new For(paneLayoutArea);
+                f0r.buildStructure(x - (80 / 2), y - (25 / 2), 100, 25, true);
+            }
+            case "While" -> {
+                While wh1le = new While(paneLayoutArea);
+                wh1le.buildStructure(x - (80 / 2), y - (25 / 2), 100, 25, true);
+            }
+            case "Method" -> {
+                Method method = new Method(paneLayoutArea);
+                method.buildStructure(x - (80 / 2), y - (25 / 2), 100, 25, true);
+            }
+            case "EndOfProcedure" -> {
+                EndOfProcedure endOfProcedure = new EndOfProcedure(paneLayoutArea);
+                endOfProcedure.buildStructure(x - (80 / 2), y - (25 / 2), 25, 25, true);
+            }            
             default ->
                 System.out.println("Error estructura no encontrada :(");
         }

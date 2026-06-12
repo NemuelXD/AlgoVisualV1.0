@@ -46,6 +46,7 @@ public class For extends Structure {
         this.f0r.setMinSize(80, 25);
         this.f0r.setPrefSize(w, h);
         this.f0r.setMaxSize(250, 100);
+        this.f0r.setCursor(Cursor.HAND);
 
         this.path = new Path();
         this.path.setFill(Color.rgb(61, 196, 76));
@@ -251,4 +252,7 @@ public class For extends Structure {
         }
     }
 
+    public StackPane getF0r() {
+        return this.f0r;
+    }
 }

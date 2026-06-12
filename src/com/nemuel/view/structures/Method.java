@@ -45,6 +45,7 @@ public class Method extends Structure {
         this.method.setMinSize(80, 25);
         this.method.setPrefSize(w, h);
         this.method.setMaxSize(250, 100);
+        this.method.setCursor(Cursor.HAND);
 
         this.path = new Path();
         this.path.setFill(Color.rgb(0, 128, 128));
@@ -246,6 +247,10 @@ public class Method extends Structure {
         if (!this.method.getChildren().contains(this.instruction)) {
             this.method.getChildren().add(this.instruction);
         }
+    }
+
+    public StackPane getMethod() {
+        return this.method;
     }
 
 }
